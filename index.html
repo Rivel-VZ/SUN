@@ -1,31 +1,76 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SUN</title>
+
 <style>
-body{margin:0;background:#08080d;color:#eee;font-family:system-ui;text-align:center;display:grid;place-items:center;min-height:100vh}
-main{max-width:520px;padding:28px}
-a{display:block;margin:14px;padding:16px;border:1px solid #777;border-radius:12px;color:#fff;text-decoration:none}
+body {
+  margin: 0;
+  background: #08080d;
+  color: #f0f0f0;
+  font-family: system-ui, sans-serif;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+main {
+  padding: 30px;
+}
+
+h1 {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+p {
+  opacity: 0.7;
+}
 </style>
 </head>
+
 <body>
 <main>
-<h1>☀ SUN</h1>
-<p id="status">Arahkan perangkat sesuai pilihanmu.</p>
-<a href="https://drive.google.com/drive/folders/1valQtwpUoLt5QxvNnAakI_NV4Si_K7vv2_ZXUbYL1OomYRB6t1O0kuFBXlix7EoZ49U4brI3">PATH I · DRIVE 1</a>
-<a href="https://drive.google.com/drive/folders/1vCzFLpL1ckXtT_gsUeu6teF2Yjxga9_q">PATH II · DRIVE 2</a>
-<small>Satu QR · Dua jalan</small>
+  <h1>☀ SUN</h1>
+  <p id="status">Mencari arah...</p>
 </main>
+
 <script>
-function update() {
-  const landscape = innerWidth > innerHeight;
-  document.getElementById("status").textContent =
-    landscape ? "Mode landscape · Path II" : "Mode portrait · Path I";
+const DRIVE_1 =
+"https://drive.google.com/drive/folders/1valQtwpUoLt5QxvNnAakI_NV4Si_K7vv2_ZXUbYL1OomYRB6t1O0kuFBXlix7EoZ49U4brI3";
+
+const DRIVE_2 =
+"https://drive.google.com/drive/folders/1vCzFLpL1ckXtT_gsUeu6teF2Yjxga9_q";
+
+let redirected = false;
+
+function checkOrientation() {
+  if (redirected) return;
+
+  const angle = screen.orientation?.angle ?? 0;
+
+  if (angle === 90) {
+    redirected = true;
+    document.getElementById("status").textContent =
+      "→ Membuka Drive 2...";
+    window.location.href = DRIVE_2;
+  } 
+  else if (angle === 0) {
+    redirected = true;
+    document.getElementById("status").textContent =
+      "Membuka Drive 1...";
+    window.location.href = DRIVE_1;
+  }
 }
-addEventListener("resize", update);
-update();
+
+setTimeout(checkOrientation, 700);
+
+screen.orientation?.addEventListener("change", checkOrientation);
+window.addEventListener("resize", checkOrientation);
 </script>
+
 </body>
 </html>
