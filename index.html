@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SUN</title>
+<style>
+body{margin:0;background:#08080d;color:#eee;font-family:system-ui;text-align:center;display:grid;place-items:center;min-height:100vh}
+main{max-width:520px;padding:28px}
+a{display:block;margin:14px;padding:16px;border:1px solid #777;border-radius:12px;color:#fff;text-decoration:none}
+</style>
+</head>
+<body>
+<main>
+<h1>☀ SUN</h1>
+<p id="status">Arahkan perangkat sesuai pilihanmu.</p>
+<a href="https://drive.google.com/drive/folders/1valQtwpUoLt5QxvNnAakI_NV4Si_K7vv2_ZXUbYL1OomYRB6t1O0kuFBXlix7EoZ49U4brI3">PATH I · DRIVE 1</a>
+<a href="https://drive.google.com/drive/folders/1vCzFLpL1ckXtT_gsUeu6teF2Yjxga9_q">PATH II · DRIVE 2</a>
+<small>Satu QR · Dua jalan</small>
+</main>
+<script>
+function update() {
+  const landscape = innerWidth > innerHeight;
+  document.getElementById("status").textContent =
+    landscape ? "Mode landscape · Path II" : "Mode portrait · Path I";
+}
+addEventListener("resize", update);
+update();
+</script>
+</body>
+</html>
