@@ -74,3 +74,15 @@ window.addEventListener("resize", checkOrientation);
 
 </body>
 </html>
+
+<p id="clue"></p>
+
+<script>
+const clue = document.getElementById("clue");
+
+if (/Android|iPhone|iPad/i.test(navigator.userAgent)) {
+    clue.textContent = "Turn your view.";
+} else {
+    clue.textContent = "You cannot turn the screen. Perhaps you can turn something else.";
+}
+</script>
